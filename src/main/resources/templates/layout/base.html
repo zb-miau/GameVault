@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es" th:fragment="layout(title,content)">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="${title}">GameVault</title>
+    <link rel="stylesheet" th:href="@{/styles/style.css}">
+</head>
+<body>
+    
+    <nav>
+        <a href="/juegos" class="nav-brand">🎮 GameVault</a>
+        <div class="nav-links">
+            <a href="/juegos">Catálogo</a>
+            <a href="/juegos/nuevo">Subir Juego</a>
+            <a href="/fragments-demo" style="color: var(--success); margin-left:20px;">Fragmentos</a>
+        </div>
+    </nav>
+
+    <main class="container" th:replace="${content}">
+        Contenido por defecto que será reemplazado
+    </main>
+
+</body>
+</html>

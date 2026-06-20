@@ -6,13 +6,6 @@
             <a href="/juegos/nuevo" class="btn btn-primary">+ Nuevo Juego</a>
         </div>
 
-        <div style="margin-bottom: 30px">
-            <form action="/juegos" method="get" style="display:flex; gap: 10px;">
-                <input type="text" name="buscar" th:value="${busquedaActual}" placeholder="Buscar juego por título" style="flex: 1; padding: 10px; border-radius: 5px;"></input>
-                <button type="submit" class="btn btn-secondary">Buscar</button>
-            </form>
-        </div>
-
         <div class="grid">
 
             <div th:each="juego : ${juegos}" class="panel" style="padding: 0; overflow: hidden;">
@@ -25,8 +18,14 @@
                     <h3 th:text="${juego.titulo}" style="margin-top: 0; margin-bottom: 10px;">Título del Juego</h3>
                     <p th:text="${juego.descripcion}" style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin: 0;">Descripción breve del juego.</p>
                 </div>
-            </div>
 
+                <div style="padding:20px; display: flex; margin-top:10px;">
+                    <a th:href="@{/juegos/editar/{id}(id=${juego.id})}" class="btn-secondary">Editar</a>
+                    <form th:action="@{/juegos/eliminar/{id}(id=${juego.id})}" method="post" onsubmit="return confirm('¿Está seguro que desea elimianr el juego?')">
+                        <button type="submit" class="btn-primary">Eliminar</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </main>
 

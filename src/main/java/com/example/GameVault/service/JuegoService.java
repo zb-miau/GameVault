@@ -67,5 +67,25 @@ public class JuegoService {
             return "default.png";
         }
     }
+
+    public List<Juego> buscarPorTitulo(String titulo){
+        if(titulo == null || titulo.trim().isEmpty()){
+            return listarTodos();
+        }
+
+        return juegosRepository.findByTituloContainingIgnoreCase(titulo);
+    }
+
+    public Juego obtenerJuegoPorId(Long id){
+        return juegosRepository.findById(id).orElse(null);
+    }
+
+    public void eliminarJuego(Long id){
+        juegosRepository.deleteById(id);
+    }
+
+    public List<Juego> obtenerJuegosPorUsuario(Long usuarioId){
+        return juegosRepository.findByUsuarioId(usuarioId);
+    }
 }
 

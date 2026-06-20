@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: html(
+        ~{::title},
+        ~{::main}
+      )}">
+<head>
+    <title>Iniciar Sesión - GameVault</title>
+</head>
+<body>
+
+<main class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5 mt-5">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3>Iniciar Sesión</h3>
+                </div>
+                <div class="card-body">
+                    
+                    <div th:if="${error}" class="alert alert-danger" role="alert">
+                        <span th:text="${error}"></span>
+                    </div>
+
+                    <div th:if="${param.registrado}" class="alert alert-success" role="alert">
+                        ¡Registro exitoso! Por favor, inicia sesión.
+                    </div>
+
+                    <form th:action="@{/login}" method="post">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <p class="mb-0">¿No tienes cuenta? <a th:href="@{/registro}">Regístrate aquí</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
